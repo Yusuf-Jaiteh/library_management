@@ -1,0 +1,22 @@
+GET http://localhost:8080/api/users/1 HTTP/1.1
+
+###
+GET http://localhost:8080/api/users HTTP/1.1
+
+###
+GET http://localhost:8080/api/users/email/yusuf@gmail.com HTTP/1.1
+
+###
+POST http://localhost:8080/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "yusuf@gmail.com",
+    "firstName": "Yusuf",
+    "lastName": "Jaiteh",
+    "password": "dkkgj",
+    "role": "Admin"
+}
+
+###
+DELETE http://localhost:8080/api/users/2 HTTP/1.1
