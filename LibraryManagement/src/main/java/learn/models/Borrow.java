@@ -20,7 +20,9 @@ public class Borrow {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @Column(nullable = false)
     private LocalDate borrowDate;
+    @Column(nullable = false)
     private LocalDate returnDate;
 
     public Borrow() {

@@ -24,15 +24,54 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book addBook(Book book){
-        return bookRepository.save(book);
+    public Result<Book> addBook(Book book){
+        Result<Book> result = validate(book);
+        if(!result.isSuccess()){
+            return result;
+        }
+        result.setPayload(bookRepository.save(book));
+        return result;
     }
 
-//    public boolean update(Book book){
-//        return bookRepository.update(book);
-//    }
+    private Result<Book> validate(Book book) {
+    }
 
-    public void deleteBook(Long id){
-         bookRepository.deleteById(id);
+    public Book updateBook(Long id, Book updatedBook) {
+        if (updatedBook == null) {
+            throw new IllegalArgumentException("Updated book cannot be null.");
+        }
+        if (updatedBook.getTitle() == null || updatedBook.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Book title cannot be null or empty.");
+        }
+        if (updatedBook.getAuthor() == null || updatedBook.getAuthor().isEmpty()) {
+            throw new IllegalArgumentException("Book author cannot be null or empty.");
+        }
+        if (updatedBook.getGenre() == null || updatedBook.getGenre().isEmpty()) {
+            throw new IllegalArgumentException("Book genre cannot be null or empty.");
+        }
+        if (updatedBook.getCopiesAvailable() < 0) {
+            throw new IllegalArgumentException("Number of copies available cannot be negative.");
+        }
+
+        Optional<Book> existingBookOpt = bookRepository.findById(id);
+        if (existingBookOpt.isPresent()) {
+            Book existingBook = existingBookOpt.get();
+            existingBook.setTitle(updatedBook.getTitle());
+            existingBook.setAuthor(updatedBook.getAuthor());
+            existingBook.setGenre(updatedBook.getGenre());
+            existingBook.setCopiesAvailable(updatedBook.getCopiesAvailable());
+            return bookRepository.save(existingBook);
+        } else {
+            throw new IllegalArgumentException("Book with id " + id + " does not exist.");
+        }
+    }
+
+    public boolean deleteBook(Long id) {
+        if (bookRepository.existsById(id)) {
+            bookRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
