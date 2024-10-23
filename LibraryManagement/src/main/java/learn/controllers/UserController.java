@@ -1,7 +1,11 @@
 package learn.controllers;
 
+import learn.domain.Result;
 import learn.domain.UserService;
+import learn.models.Borrow;
 import learn.models.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,28 +22,63 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public Optional<User> findById(@PathVariable Long id){
-        return userService.findById(id);
+    public ResponseEntity<User> findById(@PathVariable java.lang.Long id) {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("/email/{email}")
-    public Optional<User> findByEmail(@PathVariable String email){
-        return userService.findByEmail(email);
+    public ResponseEntity<Optional<User>> findByEmail(@PathVariable String email) {
+        Optional<User> user = userService.findByEmail(email);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping
-    public List<User> findAll(){
-        return userService.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        List<User> users = userService.findAll();
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    public ResponseEntity<Result<User>> addUser(@RequestBody User user) {
+        Result<User> result = userService.addUser(user);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result, HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.badRequest().body(result);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Result<User>> updateUser(@PathVariable java.lang.Long id, @RequestBody User user) {
+        if (id != user.getId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        Result<User> result = userService.updateUser(user);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
-        userService.deleteById(id);
+    public ResponseEntity<Result<Borrow>> deleteById(@PathVariable java.lang.Long id) {
+        Result<Borrow> result = userService.deleteById(id);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
     }
 
 }

@@ -2,6 +2,8 @@ package learn.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "books")
 public class Book {
@@ -17,6 +19,8 @@ public class Book {
     private String genre;
     @Column(nullable = false)
     private int copiesAvailable;
+    @Transient
+    private List<Borrow> borrows;
 
     public Book() {
     }
