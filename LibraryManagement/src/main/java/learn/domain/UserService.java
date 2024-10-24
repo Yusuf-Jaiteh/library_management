@@ -1,5 +1,6 @@
 package learn.domain;
 
+import learn.data.BorrowRepository;
 import learn.data.UserRepository;
 import learn.models.Borrow;
 import learn.models.User;
@@ -62,8 +63,8 @@ public class UserService {
         return result;
     }
 
-    public Result<Borrow> deleteById(java.lang.Long id){
-        Result<Borrow> result = new Result<>();
+    public Result<User> deleteById(java.lang.Long id){
+        Result<User> result = new Result<>();
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
         } else {

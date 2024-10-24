@@ -72,8 +72,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Result<Borrow>> deleteById(@PathVariable java.lang.Long id) {
-        Result<Borrow> result = userService.deleteById(id);
+    public ResponseEntity<Result<User>> deleteById(@PathVariable java.lang.Long id) {
+        Result<User> result = userService.deleteById(id);
         if (result.isSuccess()) {
             return ResponseEntity.ok(result);
         } else {

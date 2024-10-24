@@ -4,14 +4,14 @@ GET http://localhost:8080/api/users/1 HTTP/1.1
 GET http://localhost:8080/api/users HTTP/1.1
 
 ###
-GET http://localhost:8080/api/users/email/yusuf@gmainl.com HTTP/1.1
+GET http://localhost:8080/api/users/email/yusuf@gmail.com HTTP/1.1
 
 ###
 POST http://localhost:8080/api/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "yusuf@gmail.com",
+    "email": "yusuf@gma.com",
     "firstName": "Yusuf",
     "lastName": "Jaiteh",
     "password": "dkkgj",
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/api/users/2 HTTP/1.1
+DELETE http://localhost:8080/api/users/3 HTTP/1.1
 
 ###
 PUT http://localhost:8080/api/users/3 HTTP/1.1

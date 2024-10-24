@@ -3,7 +3,6 @@ package learn.controllers;
 import learn.domain.BorrowService;
 import learn.domain.Result;
 import learn.models.Borrow;
-import learn.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("api/borrows")
 public class BorrowController {
 
-    private BorrowService borrowService;
+    private final BorrowService borrowService;
 
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
@@ -32,8 +31,8 @@ public class BorrowController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Borrow>> findByUser(@PathVariable User user) {
-        List<Borrow> borrows = borrowService.findByUser(user);
+    public ResponseEntity<List<Borrow>> findByUser(@PathVariable Long userId) {
+        List<Borrow> borrows = borrowService.findByUser(userId);
         if (!borrows.isEmpty()) {
             return ResponseEntity.ok(borrows);
         } else {
@@ -42,8 +41,8 @@ public class BorrowController {
     }
 
     @GetMapping("/book/{bookId}")
-    public ResponseEntity<List<Borrow>> findByBook(@PathVariable User book) {
-        List<Borrow> borrows = borrowService.findByBook(book);
+    public ResponseEntity<List<Borrow>> findByBook(@PathVariable Long bookId) {
+        List<Borrow> borrows = borrowService.findByBook(bookId);
         if (!borrows.isEmpty()) {
             return ResponseEntity.ok(borrows);
         } else {

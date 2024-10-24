@@ -2,7 +2,6 @@ package learn.domain;
 
 import learn.data.BorrowRepository;
 import learn.models.Borrow;
-import learn.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +20,12 @@ public class BorrowService {
         return borrowRepository.findById(id);
     }
 
-    public List<Borrow> findByUser(User userId){
-        return borrowRepository.findByUser(userId);
+    public List<Borrow> findByUser(Long userId){
+        return borrowRepository.findByUserId(userId);
     }
 
-    public List<Borrow> findByBook(User bookId){
-        return borrowRepository.findByBook(bookId);
+    public List<Borrow> findByBook(Long bookId){
+        return borrowRepository.findByBookId(bookId);
     }
 
     public List<Borrow> findAll(){

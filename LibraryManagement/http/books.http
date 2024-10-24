@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/api/books/2 HTTP/1.1
+DELETE http://localhost:8080/api/books/3 HTTP/1.1
 
 
 ###

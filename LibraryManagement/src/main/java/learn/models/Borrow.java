@@ -18,7 +18,7 @@ public class Borrow {
 
     @ManyToOne
     @JoinColumn(name = "book_id")
-    private User book;
+    private Book book;
 
     @Column(nullable = false)
     private LocalDate borrowDate;
@@ -28,7 +28,7 @@ public class Borrow {
     public Borrow() {
     }
 
-    public Borrow(Long id, User user, User book, LocalDate borrowDate, LocalDate returnDate) {
+    public Borrow(Long id, User user, Book book, LocalDate borrowDate, LocalDate returnDate) {
         this.id = id;
         this.user = user;
         this.book = book;
@@ -52,11 +52,11 @@ public class Borrow {
         this.user = user;
     }
 
-    public User getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(User book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
