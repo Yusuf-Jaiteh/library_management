@@ -1,3 +1,5 @@
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsaWJyYXJ5Iiwic3ViIjoieXVzdWZAZ21haWxsLmNvbSIsImFwcF91c2VyX2lkIjowLCJhdXRob3JpdGllcyI6W10sImV4cCI6MTczMDE3MzkyOH0.T_qHmCVtuqMLkDIlDyycujynAqmK7rHSUaoVqVKZW8I
+
 GET http://localhost:8080/api/books/1 HTTP/1.1
 
 ###
@@ -27,6 +29,7 @@ DELETE http://localhost:8080/api/books/3 HTTP/1.1
 ###
 POST http://localhost:8080/api/books HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
 {
     "title": "Chemistry",

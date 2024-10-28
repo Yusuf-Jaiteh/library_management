@@ -2,7 +2,6 @@ package learn.controllers;
 
 import learn.domain.Result;
 import learn.domain.UserService;
-import learn.models.Borrow;
 import learn.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
