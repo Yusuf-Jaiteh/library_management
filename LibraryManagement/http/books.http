@@ -1,5 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsaWJyYXJ5Iiwic3ViIjoieXVzdWZAZ21haWxsLmNvbSIsImFwcF91c2VyX2lkIjowLCJhdXRob3JpdGllcyI6W10sImV4cCI6MTczMDE3MzkyOH0.T_qHmCVtuqMLkDIlDyycujynAqmK7rHSUaoVqVKZW8I
-
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsaWJyYXJ5Iiwic3ViIjoieXVzdWZAZ21haXguY29tIiwiYXBwX3VzZXJfaWQiOjQsImF1dGhvcml0aWVzIjpbIm1lbWJlciJdLCJleHAiOjE3MzAxMjM4ODR9.Gc7VR8f5FZv9QKjgMn4aBIc0q1w95GUftrLXh6fx_mE
 GET http://localhost:8080/api/books/1 HTTP/1.1
 
 ###
@@ -32,8 +31,8 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-    "title": "Chemistry",
-    "author": "Conteh",
+    "title": "Conceptual",
+    "author": "Koidia",
     "genre": "Science",
     "copiesAvailable": 5
 }

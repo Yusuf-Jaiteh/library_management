@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/books").hasAnyAuthority("Admin")
                         .requestMatchers(HttpMethod.PUT, "/api/books/**").hasAnyAuthority("Admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/books/**", "/api/borrows/**").hasAnyAuthority("Admin")
+                        .anyRequest().authenticated()
                 )
                 .addFilter(new JwtFilter(manager, jwtConverter))
                 .sessionManagement(configurer -> configurer

@@ -16,10 +16,10 @@ import java.util.List;
 public class JwtConverter {
 
     // 1. Signing key
-    private final SecretKey key = Jwts.SIG.HS256.key().build();
+    private final SecretKey key = Jwts.SIG.HS256.key().build(); //This also works Keys.secretKeyFor(SignatureAlgorithm.HS256)
     // 2. "Configurable" constants
     private final String ISSUER = "library";
-    private final int EXPIRATION_MINUTES = 234553559;
+    private final int EXPIRATION_MINUTES = 60;
     private final int EXPIRATION_MILLIS = EXPIRATION_MINUTES * 60 * 1000;
 
     public String getTokenFromUser(AppUser user) {

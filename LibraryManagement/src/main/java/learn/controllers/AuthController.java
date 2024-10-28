@@ -45,7 +45,7 @@ public class AuthController {
                 String role = appUser.getAuthorities().stream()
                         .map(authority -> authority.getAuthority())
                         .findFirst()
-                        .orElse("Admin");
+                        .orElse("none");
                 return new ResponseEntity<>(
                         Map.of("jwt", jwtConverter.getTokenFromUser(appUser), "userId", String.valueOf(appUser.getAppUserId()),
                                 "role", role),
