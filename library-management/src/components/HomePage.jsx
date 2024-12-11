@@ -1,17 +1,21 @@
-import { useState } from 'react'
+
 import './HomePage.css'
 
 function HomePage(){
-    
-    const [count, setCount] = useState(0)
 
     return(
+        
         <>
             <header>
-                <nav className='home'>
-                    <h1>Counter</h1>
-                    <p>{count}</p>
-                    <button onClick={() => setCount(count + 1)}>Increment</button>
+            <nav className='nav'>
+                    <div>
+                        <ul>
+                            <li>Home</li>
+                            <li>Sign up</li>
+                            <li>Sign in</li>
+                            <li><input type='search' placeholder='search'></input></li>
+                        </ul>
+                    </div>
                 </nav>
             </header>
         </>
