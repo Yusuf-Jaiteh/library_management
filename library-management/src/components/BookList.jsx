@@ -15,7 +15,14 @@ const BookList = () => {
             <h1>Book List</h1>
             <ul>
                 {books.map(book => (
-                    <li key={book.id}>{book.title} by {book.author}</li>
+                    <li key={book.id}>
+                        <div>
+                            <img src='' alt='book image'></img>
+                            <p>{book.title}</p>
+                            <p>{book.author}</p>
+                            <button>Borrow</button>
+                        </div>
+                    </li>
                 ))}
             </ul>
         </div>

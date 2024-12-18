@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsaWJyYXJ5Iiwic3ViIjoieXVzdWZAZ21haXguY29tIiwiYXBwX3VzZXJfaWQiOjQsImF1dGhvcml0aWVzIjpbIm1lbWJlciJdLCJleHAiOjE3MzAxMjM4ODR9.Gc7VR8f5FZv9QKjgMn4aBIc0q1w95GUftrLXh6fx_mE
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsaWJyYXJ5Iiwic3ViIjoieXVzdWZAZ21haWx6LmNvbSIsImFwcF91c2VyX2lkIjoyLCJhdXRob3JpdGllcyI6WyJBZG1pbiJdLCJleHAiOjE3MzQ0NDI1MjB9.CotV22ehqM3OcSj5enVrr-uERQG2TGdlXK_fyjY42vk
 GET http://localhost:8080/api/books/1 HTTP/1.1
 
 ###
@@ -40,6 +40,7 @@ Authorization: Bearer {{jwt}}
 ###
 PUT http://localhost:8080/api/books/1 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
 {
     "id": 1,

@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "user": {
-        "id": 
+        "id": 1
     },
     "book": {
         "id": 3
