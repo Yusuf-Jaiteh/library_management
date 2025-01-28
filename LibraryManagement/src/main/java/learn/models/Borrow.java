@@ -1,23 +1,31 @@
 package learn.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "borrows")
 public class Borrow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long borrow_id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
+    @JsonBackReference
     private Book book;
 
     @Column(nullable = false)
@@ -25,61 +33,10 @@ public class Borrow {
     @Column(nullable = false)
     private LocalDate returnDate;
 
-    public Borrow() {
-    }
-
-    public Borrow(Long id, User user, Book book, LocalDate borrowDate, LocalDate returnDate) {
-        this.id = id;
-        this.user = user;
-        this.book = book;
-        this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public LocalDate getBorrowDate() {
-        return borrowDate;
-    }
-
-    public void setBorrowDate(LocalDate borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-
-    public LocalDate getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
-    }
-
     @Override
     public String toString() {
         return "Borrow{" +
-                "id=" + id +
+                "borrow_id=" + borrow_id +
                 ", user=" + user +
                 ", book=" + book +
                 ", borrowDate=" + borrowDate +

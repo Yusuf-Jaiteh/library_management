@@ -134,14 +134,67 @@
 // export default Login;
 
 
-import React from 'react';
+import React, { useState } from 'react';
+import {Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/loginPic.jpg';  // Make sure the image path is correct
 import 'bootstrap/dist/css/bootstrap.min.css';  // Import Bootstrap CSS
+import { useAuth } from './AuthContext';
 
 function Login() {
+  
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [notificationMessage, setNotificationMessage] = useState(null);
+  const [notificationType, setNotificationType] = useState(null);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const loginData = { username, password };
+
+    try {
+        const response = await fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+           const { jwt, userId, role } = result;
+           login(jwt, userId, role);
+           setNotificationMessage("Login successfull!");
+           setNotificationType("success");
+          setTimeout(() => setNotificationMessage(null), 1000);
+          
+          setUserName('');
+          setPassword('');
+
+           setTimeout(() =>  navigate('/home-page'), 1000); 
+            
+           
+        } else {
+          const errorData = await response.json();
+          setNotificationMessage(errorData.message || "Failed to Login.");
+          setNotificationType("error");
+          setTimeout(() => setNotificationMessage(null), 3000); 
+        }
+    } catch (error) {
+      setNotificationMessage("Invalid Credentials!.");
+      setNotificationType("error");
+      setTimeout(() => setNotificationMessage(null), 3000); 
+    }
+};
+
+
+
   return (
     <>
-      <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+      <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center " style={{backgroundColor: '#3333'}}> 
         <div className="row w-100">
           {/* Left side - Image */}
           <div className="col-md-6 text-center">
@@ -156,16 +209,26 @@ function Login() {
             </div>
 
             <form>
+            {notificationMessage && (
+              <div className={`alert alert-${notificationType === 'success' ? 'success' : 'danger'} text-center`}>
+                {notificationMessage}
+              </div>
+            )}
+
               <div className="mb-3">
                 <input
-                  type="email"
+                  value={username}
+                  onChange={(e) => setUserName(e.target.value)}
+                  type="text"
                   required
                   className="form-control"
-                  placeholder="Enter your email"
+                  placeholder="Enter your username"
                 />
               </div>
               <div className="mb-3">
                 <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   required
                   className="form-control"
@@ -173,10 +236,14 @@ function Login() {
                 />
               </div>
               <div className="text-center">
-                <button className="btn btn-primary" type="submit">
+                <button onClick={handleSubmit} className="btn btn-primary" type="submit">
                   Login
                 </button>
               </div>
+              <div className='text-center'>
+                <Link to='/signup' className='text-warning'>Don't have an account? Sign Up!</Link>
+              </div>
+              
             </form>
           </div>
         </div>

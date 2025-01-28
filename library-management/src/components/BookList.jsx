@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import logo from '../assets/loginPic.jpg';
 
 const BookList = () => {
     const [books, setBooks] = useState([]);
@@ -11,20 +12,22 @@ const BookList = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Book List</h1>
-            <ul>
+        <div className='container-fluid bg-light min-vh-100'>
+        <div >
+            <h1 className='text-center mb-2'>Book List</h1>
+            <ul className='row justify-content-center'>
                 {books.map(book => (
-                    <li key={book.id}>
+                    <li  className="col-md-2 card text-center mb-2 me-3 " key={book.id}>
                         <div>
-                            <img src='' alt='book image'></img>
+                            <img src={logo} alt='book image' className='img-fluid'></img>
                             <p>{book.title}</p>
                             <p>{book.author}</p>
-                            <button>Borrow</button>
+                            <button className='btn btn-primary mb-2'>Borrow</button>
                         </div>
                     </li>
                 ))}
             </ul>
+        </div>
         </div>
     );
 }

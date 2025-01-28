@@ -35,7 +35,7 @@ public class BorrowService {
     public Result<Borrow> addBorrow(Borrow borrow){
         Result<Borrow> result = validate(borrow);
 
-        if(borrow.getId() != null){
+        if(borrow.getBorrow_id() != null){
             result.addMessage("Borrow Id cannot be set for add operation", ResultType.INVALID);
         }
 
@@ -50,7 +50,7 @@ public class BorrowService {
     public Result<Borrow> updateBorrow(Borrow updatedBorrow) {
         Result<Borrow> result = validate(updatedBorrow);
 
-        if (updatedBorrow.getId() == null) {
+        if (updatedBorrow.getBorrow_id() == null) {
             result.addMessage("BorrowId is required", ResultType.INVALID);
         }
 
@@ -58,7 +58,7 @@ public class BorrowService {
             return result;
         }
 
-        java.lang.Long id = updatedBorrow.getId();
+        java.lang.Long id = updatedBorrow.getBorrow_id();
         Optional<Borrow> existingBorrowOpt = borrowRepository.findById(id);
         if (existingBorrowOpt.isPresent()) {
             Borrow existingBorrow = existingBorrowOpt.get();

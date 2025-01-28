@@ -68,7 +68,7 @@ public class BorrowController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Result<Borrow>> update(@PathVariable java.lang.Long id, @RequestBody Borrow borrow) {
-        if (id != borrow.getId()) {
+        if (id != borrow.getBorrow_id()) {
             return ResponseEntity.badRequest().build();
         }
         Result<Borrow> result = borrowService.updateBorrow(borrow);

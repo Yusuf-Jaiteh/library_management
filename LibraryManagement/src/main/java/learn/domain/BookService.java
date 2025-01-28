@@ -57,7 +57,7 @@ public class BookService {
             return result;
         }
 
-        Long id = updatedBook.getId();
+        Long id = updatedBook.getBook_id();
         Optional<Book> existingBookOpt = bookRepository.findById(id);
         if (existingBookOpt.isPresent()) {
             Book existingBook = existingBookOpt.get();

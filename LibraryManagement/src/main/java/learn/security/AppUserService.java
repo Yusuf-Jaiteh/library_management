@@ -26,7 +26,7 @@ public class AppUserService implements UserDetailsService {
          AppUser appUser = new AppUser();
          appUser.setUsername(user.get().getEmail());
          appUser.setPassword(user.get().getPassword());
-         appUser.setAppUserId(Integer.parseInt(user.get().getId().toString()));
+         appUser.setAppUserId(Integer.parseInt(user.get().getUser_id().toString()));
          appUser.setAuthorities(List.of(user.get().getRole()));
         if (appUser == null) {
             throw new UsernameNotFoundException("User not found: " + username);

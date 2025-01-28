@@ -49,7 +49,7 @@ public class UserService {
             return result;
         }
 
-        java.lang.Long id = updatedUser.getId();
+        java.lang.Long id = updatedUser.getUser_id();
         Optional<User> existingUserOpt = userRepository.findById(id);
         if (existingUserOpt.isPresent()) {
             User existingUser = existingUserOpt.get();
@@ -92,7 +92,7 @@ public class UserService {
         }
 
         if (user.getEmail() == null || user.getEmail().isBlank()) {
-            result.addMessage("Email is required", ResultType.INVALID);
+            result.addMessage("Username is required", ResultType.INVALID);
         }
 
         if (user.getPassword() == null || user.getPassword().isBlank()) {
@@ -107,8 +107,8 @@ public class UserService {
             result.addMessage("Role must be either 'admin' or 'staff' or 'member'", ResultType.INVALID);
         }
 
-        if (userRepository.findByEmail(user.getEmail()).isPresent() && !userRepository.findByEmail(user.getEmail()).get().getId().equals(user.getId())) {
-            result.addMessage("Email already exists", ResultType.INVALID);
+        if (userRepository.findByEmail(user.getEmail()).isPresent() && !userRepository.findByEmail(user.getEmail()).get().getUser_id().equals(user.getUser_id())) {
+            result.addMessage("Username already exists", ResultType.INVALID);
         }
 
         return result;

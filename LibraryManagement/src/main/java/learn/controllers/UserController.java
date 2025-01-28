@@ -58,7 +58,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Result<User>> updateUser(@PathVariable java.lang.Long id, @RequestBody User user) {
-        if (id != user.getId()) {
+        if (id != user.getUser_id()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
