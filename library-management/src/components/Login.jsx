@@ -196,12 +196,12 @@ function Login() {
     <>
       <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center " style={{backgroundColor: '#3333'}}> 
         <div className="row w-100">
-          {/* Left side - Image */}
+          
           <div className="col-md-6 text-center">
             <img src={logo} alt="Library Logo" className="img-fluid" />
           </div>
 
-          {/* Right side - Form */}
+          
           <div className="col-md-6">
             <div className="text-center mb-4">
               <h4>Welcome to Universal Library Management System</h4>
